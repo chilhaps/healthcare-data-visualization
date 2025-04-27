@@ -8,7 +8,26 @@ st.set_page_config(page_title='Healthcare Data Visualization', page_icon='⚕️
 admissions_metric = defaultdict(lambda: 0)
 total = 0
 
-x_options = ['Name', 'Age', 'Gender', 'Blood Type', 'Medical Condition', 'Date of Admission', 'Doctor', 'Hospital', 'Insurance Provider', 'Admission Type', 'Medication', 'Test Results']
+print(df.head())
+
+x_options = [
+    'Name', 
+    'Age', 
+    'Gender', 
+    'Blood Type', 
+    'Medical Condition', 
+    'Date of Admission', 
+    'Doctor', 
+    'Hospital', 
+    'Insurance Provider', 
+    'Billing Amount', 
+    'Room Number', 
+    'Admission Type', 
+    'Discharge Date', 
+    'Medication', 
+    'Test Results'
+    ]
+
 y_options = ['Total Admissions', 'Admissions Percentile']
 
 st.title('Admissions Data Visualization')

@@ -3,6 +3,9 @@ import plotly.express as px
 import streamlit as st
 from collections import defaultdict
 
+def clamp(val, minimum, maximum):
+    return min(max(minimum, val), maximum)
+
 df = pd.read_csv('Healthcare Dataset Clean.csv')
 st.set_page_config(page_title='Healthcare Data Visualization', page_icon='⚕️', layout='wide')
 admissions_metric = defaultdict(lambda: 0)
@@ -50,6 +53,8 @@ elif y_choice == y_options[1]:
     for i in list(admissions_metric.keys()):
         admissions_metric[i] -= min_admissions
         admissions_metric[i] /= max_admissions
+        admissions_metric[i] *= 100
+        admissions_metric[i] = clamp(admissions_metric[i], 1, 100)
 
 new_df = pd.DataFrame(list(admissions_metric.items()), columns=[x_choice, y_choice])
 

@@ -6,12 +6,14 @@ from collections import defaultdict
 def clamp(val, minimum, maximum):
     return min(max(minimum, val), maximum)
 
+print(clamp(0, 1, 100))
+
 df = pd.read_csv('Healthcare Dataset Clean.csv')
 st.set_page_config(page_title='Healthcare Data Visualization', page_icon='⚕️', layout='wide')
 admissions_metric = defaultdict(lambda: 0)
 total = 0
 
-print(df.head())
+#print(df.head())
 
 x_options = [
     'Name', 
@@ -54,7 +56,7 @@ elif y_choice == y_options[1]:
         admissions_metric[i] -= min_admissions
         admissions_metric[i] /= max_admissions
         admissions_metric[i] *= 100
-        admissions_metric[i] = clamp(admissions_metric[i], 1, 100)
+        admissions_metric[i] = clamp(admissions_metric[i], 1.0, 100.0)
 
 new_df = pd.DataFrame(list(admissions_metric.items()), columns=[x_choice, y_choice])
 
